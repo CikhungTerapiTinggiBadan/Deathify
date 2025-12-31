@@ -1,19 +1,20 @@
-# 💀 Deathify - Analisis Harapan Hidup Berbasis Statistik
+# 💀 Deathify - Statistics-Based Life Expectancy Analysis
 
-Deathify adalah aplikasi web interaktif yang menghitung estimasi sisa waktu hidup seseorang berdasarkan data statistik demografi negara dan berbagai variabel gaya hidup pengguna. Proyek ini menggunakan integrasi database untuk menyajikan data harapan hidup yang akurat berdasarkan lokasi geografis.
+Deathify is an interactive web application that calculates an estimation of a person's remaining lifespan based on national demographic statistical data and various user lifestyle variables. This project utilizes database integration to present accurate life expectancy data based on geographical location.
 
-![Dashboard Preview](dead1.png)
+![Dashboard Preview](public/dead1.png)
+![Dashboard Preview](public/dead2.png)
 
-## 🚀 Fitur Utama
+## 🚀 Key Features
 
-* **Identitas & Demografi:** Input data nama, usia, jenis kelamin, dan lokasi negara (Case Sensitive) sebagai basis data angka harapan hidup.
-* **Variabel Gaya Hidup:** Faktor risiko yang dapat disesuaikan, seperti kebiasaan merokok, intensitas berkendara, hingga status hubungan.
-* **Dashboard Hasil Analisis:**
-    * **Estimasi Sisa Waktu:** Menampilkan prediksi sisa tahun hidup dalam angka yang besar.
-    * **Detail Statistik & Risiko:** Penjelasan mendalam mengenai dampak setiap variabel, seperti persentase risiko kematian akibat rokok atau kecelakaan jalan raya.
-    * **Peta Geo-Statistik:** Visualisasi lokasi pengguna secara real-time pada peta dunia.
-* **Database Integrated:** Mengambil data spesifik negara (Rata-rata usia kematian, risiko penyakit, dll) langsung dari koleksi database.
-* **Re-Roll:** Anda tidak puas dengan sisa umur anda? terlalu sedikit? Re-Roll saja dan good luck.
+* **Identity & Demographics:** Input data for name, age, gender, and country location (Case Sensitive) as the foundation for life expectancy figures.
+* **Lifestyle Variables:** Customizable risk factors, such as smoking habits, driving intensity, and relationship status.
+* **Analysis Results Dashboard:**
+    * **Estimated Remaining Time:** Displays the predicted remaining years of life in a large, prominent format.
+    * **Statistical & Risk Details:** In-depth explanations regarding the impact of each variable, such as the percentage of death risk from smoking or road accidents.
+    * **Geo-Statistical Map:** Real-time visualization of the user's location on a world map.
+* **Database Integrated:** Fetches country-specific data (average age of death, disease risks, etc.) directly from the database collection.
+* **Re-Roll:** Not satisfied with your remaining time? Is it too low? Just Re-Roll and good luck.
 
 ## 🛠 Tech Stack
 
@@ -22,42 +23,46 @@ Deathify adalah aplikasi web interaktif yang menghitung estimasi sisa waktu hidu
 * **Database:** Google Firebase / Firestore.
 * **Maps API:** OpenStreetMap / Leaflet.
 
-## ⚙️ Cara Menjalankan Secara Lokal
-Jika anda ingin menjalankan website ini secara lokal, atau membuat website yang mirip dengan ini, begini caranya:
+## ⚙️ How to Run Locally
+If you want to run this website locally, or create a similar website, follow these steps:
 
-### 1. Persiapan Database
-Aplikasi ini membutuhkan database (Firestore) / MongoDB dengan struktur data tertentu agar dapat berfungsi. Menggunakan Firebase, ikuti langkah berikut:
+### 1. Database Preparation
+This application requires a database (Firestore) / MongoDB with a specific data structure to function. Using Firebase, follow these steps:
 
-1.  Buat project baru di **Google Firebase Console**.
-2.  Aktifkan **Firestore Database**.
-3.  Buat koleksi (collection) utama bernama `countries`.
-4.  Cari data nilai kematian untuk setiap negara / hanya negara yang ingin kamu include. (bisa menggunakan WHO atau IHME)
-5.  Tambahkan dokumen untuk setiap negara (contoh: `American Samoa`) dengan struktur field sebagai berikut:
+1.  Create a new project in the **Google Firebase Console**.
+2.  Enable **Firestore Database**.
+3.  Create a primary collection named `countries`.
+4.  Gather mortality data for each country / only the countries you wish to include (you can use WHO or IHME data).
+5.  Add documents for each country (e.g., `American Samoa`) to the database with the following field structure:
     * `DeathAge`: (string) e.g., "72 years"
-    * `DeathM` / `DeathF`: (string) Rata-rata kematian pria/wanita.
-    * `DeathSmoke` / `DeathRoad` / `DeathAIDS_Pct`: (string) Persentase risiko kematian.
-    * `AvgAge_Smoke` / `AvgAge_Road` / `AvgAge_AIDS`: (string) Rata-rata usia kematian pada kasus terkait.
-    * `Lat` / `Lon`: (number) Koordinat geografis negara.
+    * `DeathM` / `DeathF`: (string) Average mortality for males/females.
+    * `DeathSmoke` / `DeathRoad` / `DeathAIDS_Pct`: (string) Percentage of death risk.
+    * `AvgAge_Smoke` / `AvgAge_Road` / `AvgAge_AIDS`: (string) Average age of death in related cases.
+    * `Lat` / `Lon`: (number) Country geographical coordinates.
 
-> **Catatan:** Pastikan penamaan field sesuai dengan screenshot struktur database yang disediakan di folder dokumen teknis agar aplikasi dapat memetakan data dengan benar.
+> **Note:** Ensure field naming matches the database structure screenshot provided in the technical documents folder so the application can map data correctly.
 
-### 2. Instalasi & Jalankan
-1.  **Clone repositori ini:**
+### 2. Installation & Execution
+1.  **Clone this repository:**
     ```bash
     git clone [https://github.com/username/deathify.git](https://github.com/username/deathify.git)
     cd deathify
     ```
-2.  **Konfigurasi API:**
-    Buka file konfigurasi database Anda (misal `firebase-config.js`) dan masukkan kredensial project Firebase yang telah Anda buat.
-3.  **Jalankan aplikasi:**
-    * Gunakan ekstensi **Live Server** di VS Code (klik kanan pada `index.html` > *Open with Live Server*).
-    * Aplikasi akan berjalan di `http://127.0.0.1:5500`.
+2.  **API Configuration:**
+    Open your database configuration file (e.g., `firebase-config.js`) and enter the credentials for the Firebase project you created.
+3.  **Run the application:**
+    Enter in your terminal:
+    ```bash
+    npm run dev
+    ```
+    * The application will run at `http://localhost:3000`.
 
-## 📋 Penggunaan
-1.  Masukkan nama dan usia Anda.
-2.  Masukkan nama negara sesuai dengan yang ada di database (contoh: **Indonesia** atau **American Samoa**).
-3.  Pilih gaya hidup Anda pada kolom yang tersedia.
-4.  Klik **"Mulai Analisis"** untuk melihat hasil kalkulasi statistik.
+## 📋 Usage
+1.  Enter your name and age.
+2.  Enter the country name exactly as it appears in the database (e.g., **Indonesia** or **American Samoa**).
+3.  Select your lifestyle options in the available columns.
+4.  Click **"Start Analysis"** to see the statistical calculation results.
+5.  Click the **"Dice Logo"** next to the calculated result to randomize the outcome.
 
 ---
-*Disclaimer: Aplikasi ini menggunakan perhitungan berdasarkan rata-rata statistik global untuk tujuan edukasi dan hiburan, bukan merupakan ramalan medis atau kepastian sisa umur seseorang.*
+*Disclaimer: This application uses calculations based on global statistical averages for educational and entertainment purposes. It is not a medical forecast or a certainty of an individual's remaining lifespan.*
